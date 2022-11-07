@@ -102,7 +102,7 @@ let day7 =
                 {
                     Step = step
                     Start = state.Time
-                    End = state.Time + 60 + (int step) - (int 'A') + 1
+                    End = state.Time + 61 + int step - int 'A'
                 })
 
         { state with
@@ -110,7 +110,7 @@ let day7 =
             PendingSteps = state.PendingSteps |> List.except newSteps
             AvailableWorkers = state.AvailableWorkers - Seq.length newTasks }
 
-    let progressToNextEvent state =
+    let progressToNextCompletedTask state =
         let nextTime = 
             state.Tasks
             |> Seq.sortBy (fun task -> task.End)
@@ -129,9 +129,9 @@ let day7 =
 
 
     let tick =
-        completeTasks
-        >> startTasks
-        >> progressToNextEvent
+        startTasks
+        >> progressToNextCompletedTask
+        >> completeTasks
 
 
     let rec loop state =
@@ -164,8 +164,6 @@ let day7 =
 
     printfn "Answer part 1: %s" (finalStatePart1.CompletedSteps |> String.Concat)
     printfn "Resutl part 2: %d" finalStatePart2.Time
-
-    // printf "%A" state
         
 
     
