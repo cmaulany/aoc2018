@@ -90,11 +90,10 @@ let day7 =
             AvailableWorkers = state.AvailableWorkers + Seq.length completedSteps }
 
     let startTasks state =
-        let readySteps = getReadySteps state
-
-        let newTaskCount = [Seq.length readySteps; state.AvailableWorkers] |> Seq.min
-
-        let newSteps = readySteps |> Seq.take newTaskCount
+        let newSteps = 
+            state 
+            |> getReadySteps 
+            |> Seq.truncate state.AvailableWorkers
 
         let newTasks = 
             newSteps
@@ -161,7 +160,7 @@ let day7 =
     let finalStatePart1 = loop statePart1
     let finalStatePart2 = loop statePart2
 
-
+    printfn "--Day 7--"
     printfn "Answer part 1: %s" (finalStatePart1.CompletedSteps |> String.Concat)
     printfn "Resutl part 2: %d" finalStatePart2.Time
         
