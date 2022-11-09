@@ -37,8 +37,7 @@ let day6 =
 
     let allCoordinates = seq {
         for x in minX .. maxX do
-            for y in minY .. maxY ->
-                {
+            for y in minY .. maxY -> {
                     X = x
                     Y = y
                 }
@@ -69,9 +68,7 @@ let day6 =
                 coordinate.X <> minX &&
                 coordinate.X <> maxX &&
                 coordinate.Y <> minY &&
-                coordinate.Y <> maxY
-            )
-        )
+                coordinate.Y <> maxY))
 
     let largestFiniteArea = nonInfiniteAreas |> Seq.maxBy Seq.length
     let largestFiniteAreaSize = largestFiniteArea |> Seq.length
@@ -80,8 +77,7 @@ let day6 =
         allCoordinates
         |> Seq.map (fun coordinate -> 
             coordinates 
-            |> Seq.sumBy (getDistance coordinate)
-        )
+            |> Seq.sumBy (getDistance coordinate))
         |> Seq.filter (fun n -> n < 10000)
     let allCoordinatesInRangeCount = Seq.length allCoordinatesInRange
 

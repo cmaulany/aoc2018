@@ -28,12 +28,13 @@ let day3 =
             |> Regex.Match
             |> fun m -> Seq.tail m.Groups
             |> Seq.map (fun group -> int group.Value)
+            |> Seq.toList
         {
-            Id = Seq.item 0 numbers
-            X = Seq.item 1 numbers
-            Y = Seq.item 2 numbers
-            Width = Seq.item 3 numbers
-            Height = Seq.item 4 numbers
+            Id = numbers[0]
+            X = numbers[1]
+            Y = numbers[2]
+            Width = numbers[3]
+            Height = numbers[4]
         }
     )
 

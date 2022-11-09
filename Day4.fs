@@ -94,8 +94,7 @@ let day4 =
             let rest = 
                 records
                 |> Seq.filter (fun record ->
-                    record <> startShift
-                )
+                    record <> startShift)
             {
                 Date = date
                 GuardId = guardId
@@ -110,18 +109,17 @@ let day4 =
     let guardSchedules = 
         shifts 
         |> Seq.groupBy (fun shift -> shift.GuardId)
-        |> Seq.map (fun (guardId: int, shifts) -> {
+        |> Seq.map (fun (guardId: int, shifts) -> 
+            {
                 GuardId = guardId
                 Shifts = Seq.toList shifts
-            }
-        )
+            })
 
     let mostSleptSchedule =
         guardSchedules
         |> Seq.maxBy (fun guardSchedule -> 
             guardSchedule.Shifts
-            |> Seq.sumBy shiftToMinutesAsleep
-        )
+            |> Seq.sumBy shiftToMinutesAsleep)
 
     let sleepingMinutesInShift shift =
         shift.Sleeps
@@ -153,8 +151,7 @@ let day4 =
             schedule.Shifts
             |> getMostSleptMinute
             |> Option.map (snd >> Seq.length)
-            |> Option.defaultWith (fun () -> 0)
-        )
+            |> Option.defaultWith (fun () -> 0))
 
     let mostOverlappingMinute = 
         mostOverlappingSchedule.Shifts 
@@ -166,5 +163,5 @@ let day4 =
     let answerPart2 = mostOverlappingSchedule.GuardId * mostOverlappingMinute
 
     printfn "--Day 4--"
-    printfn "Part 1: %d * %d = %d" mostSleptSchedule.GuardId mostSleptMinute answerPart1 
-    printfn "Part 2: %d * %d = %d" mostOverlappingSchedule.GuardId mostOverlappingMinute answerPart2
+    printfn "Answer part 1: %d * %d = %d" mostSleptSchedule.GuardId mostSleptMinute answerPart1 
+    printfn "Answer part 2: %d * %d = %d" mostOverlappingSchedule.GuardId mostOverlappingMinute answerPart2
