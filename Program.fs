@@ -7,6 +7,7 @@ open Day6
 open Day7
 open Day8
 open Day9
+open Day10
 
 // day1
 // day2
@@ -16,4 +17,5 @@ open Day9
 // day6
 // day7
 // day8
-day9
+// day9
+day10
